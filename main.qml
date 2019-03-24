@@ -27,6 +27,7 @@ Window {
             TextField {
                 id: searchText
                 z: 2
+                focus: true
                 Layout.fillWidth: true
                 placeholderText: qsTr("Enter request")
                 onAccepted: goButton.onClicked()
