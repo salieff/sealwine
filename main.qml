@@ -10,7 +10,15 @@ Window {
     height: 480
     title: qsTr("Hello World")
 
-    // color: "#16FF16"
+    /*
+    Component.onCompleted: {
+        searchText.text = "Castillo"
+        goButton.onClicked()
+    }
+
+    color: "#16FF16"
+    */
+
     BusyIndicator {
         id: busyIndicator
         anchors.centerIn: parent
@@ -48,7 +56,7 @@ Window {
         ListView {
             id: mainView
             clip: true
-            spacing: 15
+            spacing: 10
             Layout.fillWidth: true
             Layout.fillHeight: true
             delegate: SealWineDelegate {

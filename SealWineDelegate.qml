@@ -4,38 +4,53 @@ import QtQuick.Layouts 1.12
 RowLayout {
     width: parent.width
 
-    ColumnLayout {
-        id: textLayout
-        Layout.margins: 15
+    Item {
+        Layout.fillHeight: true
+        Layout.fillWidth: true
 
-        Text {
-            Layout.fillWidth: true
-            wrapMode: Text.Wrap
-            text: model.RegCode
+        Flickable {
+            id: textFlick
+            anchors.fill: parent
+            anchors.margins: 10
+            contentWidth: textLayout.implicitWidth
+
+            clip: true
+
+            ColumnLayout {
+                id: textLayout
+
+                Text {
+                    text: model.RegCode
+                }
+
+                Text {
+                    text: model.Producer
+                }
+
+                Text {
+                    text: model.OrigName
+                }
+
+                Text {
+                    text: model.Alcohol
+                }
+
+                Text {
+                    text: model.Caps
+                }
+            }
         }
 
-        Text {
-            Layout.fillWidth: true
-            wrapMode: Text.Wrap
-            text: model.Producer
-        }
+        Image {
+            anchors {
+                top: parent.top
+                right: parent.right
+                topMargin: 15
+            }
 
-        Text {
-            Layout.fillWidth: true
-            wrapMode: Text.Wrap
-            text: model.OrigName
-        }
-
-        Text {
-            Layout.fillWidth: true
-            wrapMode: Text.Wrap
-            text: model.Alcohol
-        }
-
-        Text {
-            Layout.fillWidth: true
-            wrapMode: Text.Wrap
-            text: model.Caps
+            source: "arrow.png"
+            visible: textFlick.width < textFlick.contentWidth
+                     && textFlick.contentX < (textFlick.contentWidth - textFlick.width)
         }
     }
 
@@ -43,7 +58,7 @@ RowLayout {
         Layout.preferredHeight: textLayout.implicitHeight
         // Layout.preferredWidth: paintedWidth
         Layout.preferredWidth: sourceSize.width * textLayout.implicitHeight / sourceSize.height
-        Layout.margins: 15
+        Layout.margins: 10
         fillMode: Image.PreserveAspectFit
         source: model ? model.Image : ""
     }
