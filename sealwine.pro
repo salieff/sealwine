@@ -33,3 +33,9 @@ HEADERS += \
     sealwinemodel.h
 
 unix: QMAKE_LFLAGS += "-Wl,-rpath,\'\$$ORIGIN\'"
+
+contains(ANDROID_TARGET_ARCH,armeabi-v7a) {
+    ANDROID_EXTRA_LIBS = \
+        /home/salieff/Work/sealwine/android_ossl/libcrypto.so \
+        $$PWD/android_ossl/libssl.so
+}

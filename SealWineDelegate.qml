@@ -1,12 +1,17 @@
 import QtQuick 2.12
 import QtQuick.Layouts 1.12
 
-RowLayout {
+Item {
     width: parent.width
+    height: textLayout.implicitHeight + textLayout.anchors.margins * 2
 
     ColumnLayout {
         id: textLayout
-        Layout.margins: 15
+        anchors {
+            top: parent.top
+            left: parent.left
+            margins: 10
+        }
 
         Text {
             text: model.RegCode
@@ -29,17 +34,15 @@ RowLayout {
         }
     }
 
-    Item {
-        Layout.fillWidth: true
-    }
-
     Image {
+        anchors {
+            top: parent.top
+            right: parent.right
+            margins: 10
+        }
+
         fillMode: Image.PreserveAspectFit
-
-        Layout.margins: 15
-        Layout.preferredHeight: textLayout.implicitHeight
-        Layout.preferredWidth: sourceSize.width * textLayout.implicitHeight / sourceSize.height
-
+        height: textLayout.implicitHeight
         source: model ? model.Image : ""
     }
 }
